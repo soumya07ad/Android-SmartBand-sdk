@@ -135,6 +135,7 @@ public class MainActivity extends ComponentActivity implements View.OnClickListe
     private String mClassicBtDeviceBtName = "";
 
     private boolean bSaveLog = true;
+    private boolean bAuthSuccess = false; // Flag to keep UI visible after auth 200
 
     private static int ota_mode_firmware = 1;
     private static int ota_mode_dial = 2;
@@ -386,9 +387,19 @@ public class MainActivity extends ComponentActivity implements View.OnClickListe
         }
 
 
-        @Override
         public void onAuthDeviceResult(int arg0) throws RemoteException {
             showToast("onAuthDeviceResult", arg0 + "");
+            if (arg0 == 200) {
+                bAuthSuccess = true;
+                // Keep UI visible after successful auth
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        btDisconnect.setEnabled(true);
+                        llConnect.setVisibility(View.VISIBLE);
+                    }
+                });
+            }
         }
 
 
@@ -1364,7 +1375,7 @@ public class MainActivity extends ComponentActivity implements View.OnClickListe
             Bundle data = msg.getData();
             int state = data.getInt("state");
 
-            if (state == 2) {
+            if (state == 2 || bAuthSuccess) {
                 btBind.setEnabled(false);
                 btUnbind.setEnabled(true);
                 btScan.setEnabled(true);
@@ -1647,6 +1658,7 @@ public class MainActivity extends ComponentActivity implements View.OnClickListe
                 }
                 unbindService(mServiceConnection);
                 mIsBound = false;
+                bAuthSuccess = false;
             }
         } else if (id == R.id.scan) {
             // æ£€æŸ¥å®šä½
@@ -1667,6 +1679,7 @@ public class MainActivity extends ComponentActivity implements View.OnClickListe
             callRemoteScanDevice();
         } else if (id == R.id.disconnect) {
             callRemoteDisconnect();
+            bAuthSuccess = false;
         } else if (id == R.id.bNotify) {
             callNotify();
         } else if (id == R.id.set_parameters) {
