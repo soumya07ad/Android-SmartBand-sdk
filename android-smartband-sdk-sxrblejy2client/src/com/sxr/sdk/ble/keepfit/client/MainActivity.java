@@ -1460,6 +1460,10 @@ public class MainActivity extends ComponentActivity implements View.OnClickListe
             try {
                 popWindow(findViewById(R.id.scan), R.layout.popwindow_devicelist);
                 bStart = !bStart;
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S && 
+                    checkSelfPermission(Manifest.permission.BLUETOOTH_SCAN) != PackageManager.PERMISSION_GRANTED) {
+                    return;
+                }
                 mService.scanDevice(bStart);
             } catch (RemoteException e) {
                 e.printStackTrace();
@@ -1511,6 +1515,10 @@ public class MainActivity extends ComponentActivity implements View.OnClickListe
         if (mService != null) {
             try {
                 macid = mac;
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S && 
+                    checkSelfPermission(Manifest.permission.BLUETOOTH_CONNECT) != PackageManager.PERMISSION_GRANTED) {
+                    return;
+                }
                 mService.connectBt(name, mac);
             } catch (RemoteException e) {
                 e.printStackTrace();
@@ -1525,6 +1533,10 @@ public class MainActivity extends ComponentActivity implements View.OnClickListe
 
         if (mService != null) {
             try {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S && 
+                    checkSelfPermission(Manifest.permission.BLUETOOTH_CONNECT) != PackageManager.PERMISSION_GRANTED) {
+                    return;
+                }
                 mService.disconnectBt(true);
             } catch (RemoteException e) {
                 e.printStackTrace();
