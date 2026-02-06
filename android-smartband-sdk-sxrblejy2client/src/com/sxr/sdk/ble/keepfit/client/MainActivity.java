@@ -398,6 +398,15 @@ public class MainActivity extends ComponentActivity implements View.OnClickListe
                     public void run() {
                         btDisconnect.setEnabled(true);
                         llConnect.setVisibility(View.VISIBLE);
+                        
+                        // AUTO-BIND: Try to stabilize connection immediately
+                        try {
+                           if(mService != null) {
+                               mService.setBindedInfo(CommonAttributes.BOND_ACTION_APP_START, CommonAttributes.BOND_STATE_NO, CommonAttributes.OS_TYPE);
+                           }
+                        } catch (Exception e) {
+                           e.printStackTrace();
+                        }
                     }
                 });
             }
