@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ecg.EcgTestActivity"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:id="@+id/etReceiveContent"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content" />
+        <Button
+            android:id="@+id/bOpen"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/set_factorytestmode_open"
+            android:onClick="openFactoryModeTest"/>
+
+        <Button
+            android:id="@+id/bClose"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/set_factorytestmode_close"
+            android:enabled="false"
+            android:onClick="closeFactoryModeTest"/>
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ScrollView
+            android:id="@+id/scrollview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true">
+
+            <TextView
+                android:id="@+id/tv_content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fadeScrollbars="false"
+                android:gravity="left"
+                android:scrollbarFadeDuration="2000"
+                android:scrollbarStyle="insideOverlay"
+                android:scrollbars="vertical"></TextView>
+        </ScrollView>
+    </LinearLayout>
+
+</LinearLayout>

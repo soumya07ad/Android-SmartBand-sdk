@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="fill_parent"
+              android:layout_height="fill_parent"
+              android:background="@color/silver"
+              android:gravity="top"
+              android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="48dip"
+        android:background="@color/blue"
+        android:gravity="center_vertical">
+
+        <ImageView
+            android:id="@+id/ivBack"
+            android:layout_width="48dip"
+            android:layout_height="48dip"
+            android:padding="12dp"
+            android:src="@mipmap/back_white"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/Custom_Screen"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_title"/>
+
+        <ImageView
+            android:layout_width="48dip"
+            android:layout_height="48dip"
+            android:padding="12dp"/>
+    </LinearLayout>
+
+    <GridView
+        android:id="@+id/gvDialMarket"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:numColumns="3"
+        android:verticalSpacing="24dp"
+        android:layout_marginTop="40dp"
+        >
+    </GridView>
+
+</LinearLayout>

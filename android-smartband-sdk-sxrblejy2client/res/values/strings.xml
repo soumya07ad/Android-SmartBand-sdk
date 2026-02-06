@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">JYSDK</string>
+
+    <string name="bind">绑定服务 (Bind Service)</string>
+    <string name="unbind">解绑服务 (Unbind Service)</string>
+    <string name="scan">扫描 (Scan)</string>
+    <string name="connect">连接 (Connect)</string>
+    <string name="disconnect">断连 (Disconnect)</string>
+    <string name="send_call_notificatioin">发送提醒 (Send Notification)</string>
+    <string name="sync_time">获取当前运动数据 (Get Current Sport Data)</string>
+    <string name="set_time">设置设备时间 (Set Device Time)</string>
+    <string name="set_parameters">设置设备参数 (Set Device Parameters)</string>
+    <string name="set_userinfo">设置个人信息 (Set User Info)</string>
+    <string name="set_vir">手环振动 (Band Vibration)</string>
+    <string name="set_photo">拍照模式 (Camera Mode)</string>
+    <string name="set_idletime">久坐提醒时间 (Sedentary Reminder)</string>
+    <string name="set_sleep">设置睡眠时间段 (Set Sleep Period)</string>
+    <string name="read_batery">读取设备电量 (Read Battery)</string>
+    <string name="read_deviceinfo">读取手环信息 (Read Device Info)</string>
+    <string name="set_alarm">设置闹钟 (Set Alarm)</string>
+    <string name="openheart">开启测试心率 (Start Heart Rate Test)</string>
+    <string name="closeheart">关闭测试心率 (Stop Heart Rate Test)</string>
+    <string name="set_autoheart">自动测试心率 (Auto Heart Rate)</string>
+    <string name="set_fuzhu">特殊模式 (Special Mode)</string>
+    <string name="set_showmode">设置显示模式 (Set Display Mode)</string>
+    <string name="getdata">获取历史数据 (Get History Data)</string>
+    <string name="set_device_code">设置机器串码 (Set Device Code)</string>
+    <string name="get_device_code">获取机器串码 (Get Device Code)</string>
+
+    <string name="set_heart_range">设置心率区间 (Set Heart Rate Range)</string>
+    <string name="get_band_function">获取手环功能 (Get Band Functions)</string>
+    <string name="set_uuid">切换默认处理 (Toggle Default Handler)</string>
+
+    <string name="ecg_open">打开心电 (Open ECG)</string>
+    <string name="ecg_close">关闭心电 (Close ECG)</string>
+    <string name="ecg_playback">心电回放 (ECG Playback)</string>
+    <string name="ecg_report">心电报告 (ECG Report)</string>
+    <string name="ecg_sync">同步心电 (Sync ECG)</string>
+    <string name="ecg_test">测试心电 (Test ECG)</string>
+    <string name="set_name">修改名称 (Set Name)</string>
+    <string name="get_rssi">获取信号 (Get RSSI)</string>
+
+    <string name="ecg_auto">自动测试 (Auto Test)</string>
+    <string name="ecg_auto_name">输入测试手环名称 (Enter Band Name)</string>
+    <string name="ecg_heart">心率 (Heart Rate)</string>
+    <string name="ecg_band">手环 (Band)</string>
+    <string name="ecg_chest">胸贴 (Chest Patch)</string>
+
+    <string name="set_reminder_time">设置提醒时间 (Set Reminder Time)</string>
+    <string name="set_reminder_text">设置提醒内容 (Set Reminder Text)</string>
+
+    <string name="set_bp_adjust">设置血压校准 (Set BP Calibration)</string>
+    <string name="set_appid">Set AppId</string>
+
+    <string name="set_sms_rsp_content">设置短信快速回复内容 (Set SMS Quick Reply)</string>
+    <string name="set_ecard_content">设置电子卡包 (Set E-Card)</string>
+    <string name="set_contact">设置联系人 (Set Contacts)</string>
+    <string name="set_ota_firmware">固件升级 (Firmware OTA)</string>
+    <string name="set_ota_dial">表盘更新 (Dial OTA)</string>
+    <string name="set_ota_wallpaper">壁纸更新 (Wallpaper OTA)</string>
+    <string name="get_device_dialinfo">读取设备屏幕信息 (Get Device Screen Info)</string>
+
+    <string name="state_ble_stack_error">Reactivate Bluetooth</string>
+    <string name="permission_location">In order to scan ble device, we need to request location permission.</string>
+    <string name="permission_ble_scan">Please open ble scan permissions</string>
+    <string name="permission_ble_connect">Please open ble connect permissions</string>
+    <string name="action_cancel">Cancel</string>
+    <string name="action_ok">Confirm</string>
+
+    <string name="set_factorytestmode">工厂测试模式 (Factory Test Mode)</string>
+    <string name="set_factorytestmode_open">开始测试 (Start Test)</string>
+    <string name="set_factorytestmode_close">停止测试 (Stop Test)</string>
+
+    <string name="Custom_Screen">Dial market</string>
+    <string name="Download_Dail">Dial download</string>
+
+    <string name="Device_Busy">The device is synchronizing data, trying again later.</string>
+    <string name="Image_Frame_Error">Unable to get the cropped image, please select again!</string>
+
+    <string name="action_bt_setting">Goto BT Settings</string>
+    <string name="msg_bt_pair_error">Bluetooth automatic connection fails, please go to the Bluetooth settings page to manually click on the name of the bracelet to connect:</string>
+
+    <!-- New strings for hardcoded Chinese in activity_main.xml -->
+    <string name="set_language">设置系统语言 (Set Language)</string>
+    <string name="send_weather">发送天气信息 (Send Weather)</string>
+    <string name="open_blood">打开血压 (Open Blood Pressure)</string>
+    <string name="close_blood">关闭血压 (Close Blood Pressure)</string>
+    <string name="sync_multi_sport">同步多运动数据 (Sync Multi-Sport Data)</string>
+    <string name="set_goal_step">设置目标步数 (Set Goal Steps)</string>
+
+</resources>

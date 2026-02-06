@@ -1,0 +1,79 @@
+apply plugin: 'com.android.application'
+
+android {
+    namespace 'com.sxr.sdk.ble.keepfit.client'
+    compileSdk 34
+
+    defaultConfig {
+        applicationId "com.sxr.sdk.ble.keepfit.client"
+        minSdk 21
+        targetSdk 32
+        versionCode 37
+        versionName "1.4.6"
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+
+    buildFeatures {
+        buildConfig true
+    }
+
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['libs']
+            manifest.srcFile 'AndroidManifest.xml'
+            java.srcDirs = ['src']
+            resources.srcDirs = ['src']
+            aidl.srcDirs = ['src']
+            renderscript.srcDirs = ['src']
+            res.srcDirs = ['res']
+            assets.srcDirs = ['assets']
+        }
+
+        // Move the tests to tests/java, tests/res, etc...
+        androidTest.setRoot('tests')
+
+        // Move the build types to build-types/<type>
+        // For instance, build-types/debug/java, build-types/debug/AndroidManifest.xml, ...
+        // This moves them out of them default location under src/<type>/... which would
+        // conflict with src/ being used by the main source set.
+        // Adding new build types or product flavors should be accompanied
+        // by a similar customization.
+        debug.setRoot('build-types/debug')
+        release.setRoot('build-types/release')
+    }
+
+    applicationVariants.all { variant ->
+        variant.outputs.all {
+            if (variant.buildType.name.equals("release"))
+                outputFileName = new Date().format("yyyyMMdd") + "/JYSDK_V${variant.versionName}.apk"
+        }
+    }
+
+    lint {
+        abortOnError false
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: '*.jar')
+    implementation 'com.github.angads25:filepicker:1.1.1'
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'androidx.core:core:1.12.0'
+    implementation 'com.loopj.android:android-async-http:1.4.11'
+    implementation 'io.github.lucksiege:pictureselector:v3.11.1'
+    implementation 'io.github.lucksiege:compress:v3.11.1'
+    implementation 'io.github.lucksiege:ucrop:v3.11.1'
+    implementation "com.github.bumptech.glide:glide:4.16.0"
+    implementation(name: 'android-smartband-sdk-sxrblejy2library-release', ext: 'aar')
+    implementation(name: 'android-smartband-sdk-sxrblejy2aidl-release', ext: 'aar')
+}
+
+// Resolve Kotlin stdlib duplicate class conflicts (jdk7/jdk8 merged into main stdlib in Kotlin 1.8+)
+configurations.all {
+    exclude group: 'org.jetbrains.kotlin', module: 'kotlin-stdlib-jdk7'
+    exclude group: 'org.jetbrains.kotlin', module: 'kotlin-stdlib-jdk8'
+}
