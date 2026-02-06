@@ -107,6 +107,7 @@ import com.yalantis.ucrop.UCropImageEngine;
 
 import android.content.SharedPreferences;
 
+import android.content.pm.PackageManager;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
