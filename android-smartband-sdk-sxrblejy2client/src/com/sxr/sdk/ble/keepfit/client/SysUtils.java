@@ -57,6 +57,8 @@ public class SysUtils {
 	         raf.seek(file.length());
 	         raf.write(strContent.getBytes());
 	         raf.close();
+	     } catch (SecurityException e) {
+	         Log.e("TestFile", "Permission denied for file operation: " + e);
 	     } catch (Exception e) {
 	         Log.e("TestFile", "Error on write File:" + e);
 	     }
@@ -71,6 +73,8 @@ public class SysUtils {
 	         if (!file.exists()) {
 	             file.createNewFile();
 	         }
+	     } catch (SecurityException e) {
+	         Log.e("TestFile", "Permission denied for file creation: " + e);
 	     } catch (Exception e) {
 	         e.printStackTrace();
 	     }
@@ -85,6 +89,8 @@ public class SysUtils {
 	         if (!file.exists()) {
 	             file.mkdir();
 	         }
+	     } catch (SecurityException e) {
+	         Log.e("error:", "Permission denied for directory creation: " + e);
 	     } catch (Exception e) {
 	         Log.i("error:", e+"");
 	     }

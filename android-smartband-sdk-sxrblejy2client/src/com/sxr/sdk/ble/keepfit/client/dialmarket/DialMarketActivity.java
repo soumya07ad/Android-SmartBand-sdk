@@ -179,22 +179,27 @@ public class DialMarketActivity extends FragmentActivity {
 				String domain = dialInfo.getDomain();
 				holder.decDial.setText(dialInfo.getName());
 
-				String binPath = SysUtils.createSDCardDir(activityContext, P_FIRMWARE_PATH)
-						+ "/" + filename;
-				java.io.File file = new java.io.File(binPath);
+				try {
+					String binPath = SysUtils.createSDCardDir(activityContext, P_FIRMWARE_PATH)
+							+ "/" + filename;
+					java.io.File file = new java.io.File(binPath);
 
-				String imagePath = SysUtils.createSDCardDir(activityContext, P_IMAGE_DIAL_PATH)
-						+ "/" + imagefilename + P_IMAGE_DIAL_EXT;
-				java.io.File fileImg  = new java.io.File(imagePath);
+					String imagePath = SysUtils.createSDCardDir(activityContext, P_IMAGE_DIAL_PATH)
+							+ "/" + imagefilename + P_IMAGE_DIAL_EXT;
+					java.io.File fileImg  = new java.io.File(imagePath);
 
-				if (!fileImg.exists()) {
+					if (!fileImg.exists()) {
+						holder.imgDial.setImageResource(R.mipmap.dial_default);
+						new DownLoadImageTask(holder.imgDial, imagefilename + P_IMAGE_DIAL_EXT).execute(domain + imagefilename);
+					}
+					else {
+						Bitmap bmpDial = BitmapFactory.decodeFile(imagePath);
+						if (bmpDial != null)
+							holder.imgDial.setImageBitmap(bmpDial);
+					}
+				} catch (SecurityException e) {
+					Log.e("DialMarketActivity", "Permission denied for dial file access", e);
 					holder.imgDial.setImageResource(R.mipmap.dial_default);
-					new DownLoadImageTask(holder.imgDial, imagefilename + P_IMAGE_DIAL_EXT).execute(domain + imagefilename);
-				}
-				else {
-					Bitmap bmpDial = BitmapFactory.decodeFile(imagePath);
-					if (bmpDial != null)
-						holder.imgDial.setImageBitmap(bmpDial);
 				}
 			}
 			return convertView;

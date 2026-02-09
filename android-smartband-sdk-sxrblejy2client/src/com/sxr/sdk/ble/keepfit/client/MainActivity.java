@@ -2031,28 +2031,33 @@ public class MainActivity extends ComponentActivity implements View.OnClickListe
         } else if (id == R.id.btOtaFirmware) {
 //                callGetOtaInfo();
             if(mService != null) {
-                DialogProperties properties = new DialogProperties();
-                properties.selection_mode = DialogConfigs.SINGLE_MODE;
-                properties.selection_type = DialogConfigs.FILE_SELECT;
-                properties.root = new File("/sdcard");
-                properties.error_dir = new File(DialogConfigs.DEFAULT_DIR);
-                properties.offset = new File("/sdcard");
-                properties.extensions = new String[]{"bin"};
-                FilePickerDialog dialog = new FilePickerDialog(MainActivity.this,properties);
-                dialog.setTitle("Select a File");
-                dialog.setDialogSelectionListener(new DialogSelectionListener() {
-                    @Override
-                    public void onSelectedFilePaths(String[] files) {
-                        //files is the array of the paths of files selected by the Application User.
-                        String otaFilePath = files[0];
-                        try {
-                            mService.startFileOta(ota_mode_firmware, otaFilePath);
-                        } catch (RemoteException e) {
-                            e.printStackTrace();
+                try {
+                    DialogProperties properties = new DialogProperties();
+                    properties.selection_mode = DialogConfigs.SINGLE_MODE;
+                    properties.selection_type = DialogConfigs.FILE_SELECT;
+                    properties.root = new File("/sdcard");
+                    properties.error_dir = new File(DialogConfigs.DEFAULT_DIR);
+                    properties.offset = new File("/sdcard");
+                    properties.extensions = new String[]{"bin"};
+                    FilePickerDialog dialog = new FilePickerDialog(MainActivity.this,properties);
+                    dialog.setTitle("Select a File");
+                    dialog.setDialogSelectionListener(new DialogSelectionListener() {
+                        @Override
+                        public void onSelectedFilePaths(String[] files) {
+                            //files is the array of the paths of files selected by the Application User.
+                            String otaFilePath = files[0];
+                            try {
+                                mService.startFileOta(ota_mode_firmware, otaFilePath);
+                            } catch (RemoteException e) {
+                                e.printStackTrace();
+                            }
                         }
-                    }
-                });
-                dialog.show();
+                    });
+                    dialog.show();
+                } catch (SecurityException e) {
+                    Log.e(TAG, "Storage permission denied", e);
+                    Toast.makeText(this, "Storage access denied. Please grant storage permission.", Toast.LENGTH_LONG).show();
+                }
             }
         } else if (id == R.id.bOtaDial) {
             if(mService != null) {
@@ -2750,7 +2755,11 @@ public class MainActivity extends ComponentActivity implements View.OnClickListe
                         saveLog("downloadFirmware onSuccess");
                         FileInputStream is = new FileInputStream(file);
                         java.io.File fileDest = new java.io.File(firmwareFilename);
-                        fileDest.getParentFile().mkdirs();
+                        try {
+                            fileDest.getParentFile().mkdirs();
+                        } catch (SecurityException e) {
+                            Log.e(TAG, "Failed to create directories due to permission issue", e);
+                        }
                         FileOutputStream fileout = new FileOutputStream(fileDest);
                         int cache = 10 * 1024;
                         byte[] buffer=new byte[cache];
